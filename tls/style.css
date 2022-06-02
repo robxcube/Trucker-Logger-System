@@ -38,3 +38,197 @@
   border-top: none;
 }
 
+#clientName {
+  position: relative;
+  left: 103px;
+
+}
+
+#clientPhone {
+  position: relative;
+  left: 546px;
+}
+
+input#clientFieldName {
+  width: 500px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 102px;
+
+}
+
+input#clientFieldNo {
+  width: 500px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 139px;
+}
+#itemName {
+  position: relative;
+  left: 103px;
+}
+#itemTypeLabel {
+  position: relative;
+  left: 561px;
+}
+input#itemName {
+  width: 500px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 102px;
+}
+#itemSizeLabel {
+  position: relative;
+  left: 103px;
+}
+#qty {
+  position: relative;
+  left: 157px;
+}
+
+#itemSize {
+  width: 80px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 102px;
+}
+
+input#qty {
+  width: 379px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 138px;
+}
+
+#itemType {
+  width: 160px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 139px;
+}
+
+#declaredValueLabel {
+  position: relative;
+  left: 102px;
+}
+
+#declaredValue {
+  width: 380px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 113px;
+}
+
+#btnAdd {
+  width: 160px;
+  padding: 12px 20px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 102px;
+}
+
+#warehouse {
+  width: 230px;
+  padding: 12px 20px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 102px;
+}
+
+#warehouseLabel {
+  position: relative;
+  left: 102px;
+}
+#transacFeeLabel {
+  position: relative;
+  left: 102px;
+}
+input#transacFee {
+  width: 300px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 116px;
+}
+
+#transacDateLabel {
+  position: relative;
+  left: 302px;
+}
+input#transacDate {
+  width: 170px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  left: 199px;
+}
+#transacDateLabel {
+  position: relative;
+left: 191px;
+}
+
+input#submitBtn {
+  width: 100px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+left: 102px;
+}
+form {
+  font-size: 16px;
+}

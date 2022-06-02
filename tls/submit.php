@@ -81,6 +81,7 @@ use LDAP\Result;
             TLS
         </title>
 
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,14 +95,22 @@ use LDAP\Result;
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
     </head>
 
     <body>
+
+
         <!--Create a tab-->
             <div class="tab">
                 <button class="tablinks" onclick="openTab(event, 'Menu')" id="defaultOpen">Menu</button>
                 <button class="tablinks" onclick="openTab(event, 'Transactions')">Transactions</button>
-                <button class="tablinks" onclick="openTab(event, 'Logs')">Logs</button>
+                <button class="tablinks" id="log" onclick="openTab(event, 'Logs')">Logs</button>
                 <!--<button class="offset-9" disabled><?php echo $row['emp_Name'] ?></button>-->
 
             </div>
@@ -111,25 +120,25 @@ use LDAP\Result;
             <div id="Menu" class="tabcontent">
                 <div id="show_alert"></div>
                 <form id ="submitForm"action="send.php" method="POST">
-                    <label>Client Name</label> &nbsp;
-                    <label> Client Phone No.</label><br>
-                        <input type="text" name="clientName[]" >
-                            <input type="number" name="clientPhoneNo[]" ><br>
+                    <label id="clientName">Client Name</label> &nbsp;
+                    <label id="clientPhone"> Client Phone No.</label><br>
+                        <input type="text" id=clientFieldName name="clientName[]" >
+                            <input type="number" id="clientFieldNo" name="clientPhoneNo[]" ><br>
                         <div id="showItem">
                             <div class="addItem">
-                                    <label>Item Name</label>
-                                    <label>Item Type</label> &nbsp;<br>
-                                        <input type="text"  name="itemName[]" required>
-                                        <select name="itemType[]">
+                                    <label id="itemName">Item Name</label>
+                                    <label id="itemTypeLabel">Item Type</label> &nbsp;<br>
+                                        <input type="text" id="itemName" name="itemName[]" required>
+                                        <select id="itemType" name="itemType[]">
                                             <option >Raw Material</option>
                                             <option >Work In Progress</option>
                                             <option >Finished Goods</option>
                                             <option >MRO Goods</option>
                                             <option >Packaging Materials</option>
                                     </select><br>
-                                    <label for="itemSize">Item Size</label>
-                                    <label for="qty">Qty.</label><br>
-                                    <select  name="itemSize[]" >
+                                    <label id="itemSizeLabel" for="itemSize">Item Size</label>
+                                    <label id="qty" for="qty">Qty.</label><br>
+                                    <select id="itemSize" name="itemSize[]" >
                                         <option value="Small">S</option>
                                         <option value="Medium">M</option>
                                         <option value="Large">L</option>
@@ -137,9 +146,9 @@ use LDAP\Result;
                                         <option value="2XL">2XL</option>
                                         <option value="3XL">3XL</option>
                                     </select>
-                                        <input type="number"  name="qty[]" required><br>
-                                    <label for="declaredValue">Declared Value</label>
-                                        <input type="number"  name="declaredValue[]" required> <br>
+                                        <input type="number" id="qty"  name="qty[]" required><br>
+                                    <label id="declaredValueLabel" for="declaredValue">Declared Value</label>
+                                        <input type="number" id="declaredValue" name="declaredValue[]" required> <br>
                             </div>
                         </div>
 
@@ -147,8 +156,8 @@ use LDAP\Result;
                             <input type="button" class="add_item_btn" id="btnAdd" value="Add New Item">
                         </div>
                         <div>
-                        <label for="">Warehouse</label><br>
-                        <select name=warehouse>
+                        <label id="warehouseLabel" for="">Warehouse</label><br>
+                        <select id="warehouse" name=warehouse>
                                 <?php
 
                                     $sql = "SELECT warehouse_Id FROM warehouse WHERE warehouse_Id = '1'";
@@ -167,9 +176,9 @@ use LDAP\Result;
 
                             </select><br>
                             </div>
-                    <label>Transaction Fee</label><input type="number" name="transacFee" required>
-                                    <label>Transaction Date</label><input type="date" name="transacDate" required><br>
-                        <input type="submit" value="submit" name="submit" for="submitForm"><br>
+                    <label id="transacFeeLabel">Transaction Fee</label><input type="number" id="transacFee" name="transacFee" required>
+                                    <label id="transacDateLabel">Transaction Date</label><input type="date" id="transacDate" name="transacDate" required><br>
+                        <input type="submit" id="submitBtn" value="submit" name="submit" for="submitForm"><br>
                     </form>
             </div>
 
@@ -263,18 +272,31 @@ use LDAP\Result;
 
             <!-- For showing the recorded packages -->
             <div id="Logs" class="tabcontent">
+
             <script>
+
+                    $('#log').click(function() {
+
+                    $("#Logs").load('Logs.php',function () {
+                        $(this).unwrap();
+                    });
+
+                    });
+
+/**
                     function loadLogs(){
 
-                        $("#Logs").load('logs.php',function () {
-                            $(this).unwrap();
-                        });
+                    $("#Logs").load('logs.php',function () {
+                        $(this).unwrap();
+                    });
                     }
 
                     loadLogs(); // This will run on page load
-                        setInterval(function(){
-                            loadLogs() // this will run after every 5 seconds
-                        }, 3000);
+                    setInterval(function(){
+                        loadLogs() // this will run after every 5 seconds
+                    }, 3000);
+
+*/
                 </script>
 
 
@@ -304,3 +326,7 @@ use LDAP\Result;
                         <button class="logout offset-11 btn btn-outline-danger" onclick="location.href='logout.php'">Logout</button>
     </body>
 </html>
+
+<script>
+
+</script>
