@@ -28,11 +28,10 @@
                         }
                     ?>
                     <input type="text" name="id" placeholder="Employee Id"  >
-
                     <br>
                     <input type="text" name="pwd"  placeholder="Password">
                 </div>
-                <input type="checkbox" name="remember"><label>Remember Me</label>
+
                 <div class="d-grid gap-2 col-7 mx-auto"><br>
                     <button type="submit" id="confirm" name="submit" class="btn btn-outline-primary">Confirm</button>
                 </div>
