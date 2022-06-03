@@ -33,6 +33,7 @@ use LDAP\Result;
 
         while($row = $result->fetch()) {
          $client_Id = $row['client_Id'];
+
          $name = $row['name'];
          $phoneNo = $row['phoneNo'];
         }
