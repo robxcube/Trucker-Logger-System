@@ -7,6 +7,21 @@ use LDAP\Result;
     include 'dbConnect.php';
 
       $clientId = $_POST['client_id'];
+      $pkg_id = $_POST['pkg_id'];
+      $itemId = " ";
+
+      $itemName = " ";
+      $itemType = " ";
+      $itemSize = " ";
+      $quantity = " ";
+      $declaredValue = " ";
+
+      $transacFee = $_POST['transacFee'];
+      $transacDate = $_POST['transacDate'];
+
+
+
+
 
 
       $sql = "SELECT * FROM client WHERE client_Id = $clientId";
@@ -17,7 +32,7 @@ use LDAP\Result;
       if($result) {
 
         while($row = $result->fetch()) {
-
+         $client_Id = $row['client_Id'];
          $name = $row['name'];
          $phoneNo = $row['phoneNo'];
         }
@@ -25,20 +40,58 @@ use LDAP\Result;
       }
 
 
-?>
 
-            <form id ="submitForm"action="">
+
+      $sql1 = "SELECT * FROM transaction WHERE pkg_Id = $pkg_id";
+      $result1 = $conn->query($sql1);
+      $result1->setFetchMode(PDO::FETCH_ASSOC);
+
+
+      if($result1) {
+
+        while($row1 = $result1->fetch()) {
+            $itemId = $row1['item_Id'];
+
+        }
+
+        }
+
+
+    $sql2 = "SELECT * FROM item WHERE item_Id = $itemId";
+    $result2 = $conn->query($sql2);
+    $result2->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($result2) {
+
+        while($row2 = $result2->fetch()) {
+            $itemName = $row2['item_Name'];
+            $itemType = $row2['item_Type'];
+            $itemSize = $row2['item_Size'];
+            $quantity = $row2['quantity'];
+            $declaredValue = $row2['declared_Value'];
+
+        }
+
+    }
+
+
+?>
+<form action="#" method="POST" id ="updateForm">
+            <input type="hidden" name="item_Id" value="<?php echo $itemId; ?>">
+                <input type="hidden" name="pkg_Id" value="<?php echo $pkg_id; ?>">
+                    <input type="hidden" name="client_Id" value="<?php echo $client_Id; ?>">
                         <label>Client Name</label> &nbsp;
                         <label style="left:105px;position: relative;"> Client Phone No.</label><br>
                             <input type="text" name="clientName" value="<?php echo $name; ?>" />
-                                <input type="number" name="clientPhoneNo[]" value="<?php echo $phoneNo; ?>" style="left:10px;position: relative;"><br>
+                                <input type="number" name="clientPhoneNo" value="<?php echo $phoneNo; ?>" style="left:10px;position: relative;"><br>
 
                             <div id="showItem">
                                 <div class="addItem">
                                         <label>Item Name</label>
                                         <label style="left:121px;position: relative;" >Item Type</label> &nbsp;<br>
-                                            <input type="text"  name="itemName[]" required>
-                                            <select style="left:11px;position: relative;" name="itemType[]">
+                                            <input type="text"  name="itemName"  value="<?php echo $itemName; ?>">
+                                            <select style="left:11px;position: relative;" name="itemType" >
+                                                <option selected><?php echo $itemType; ?></option>
                                                 <option >Raw Material</option>
                                                 <option >Work In Progress</option>
                                                 <option >Finished Goods</option>
@@ -47,7 +100,8 @@ use LDAP\Result;
                                         </select><br>
                                         <label for="itemSize">Item Size</label>
                                         <label for="qty">Qty.</label><br>
-                                        <select  name="itemSize[]" >
+                                        <select  name="itemSize" value="<?php echo $itemSize ?>">
+                                            <option selected><?php echo $itemSize; ?></option>
                                             <option value="Small">S</option>
                                             <option value="Medium">M</option>
                                             <option value="Large">L</option>
@@ -55,14 +109,14 @@ use LDAP\Result;
                                             <option value="2XL">2XL</option>
                                             <option value="3XL">3XL</option>
                                         </select>
-                                            <input type="number"  name="qty[]" required><br>
+                                            <input type="number"  name="qty" value="<?php echo $quantity; ?>"><br>
                                         <label for="declaredValue">Declared Value</label>
-                                            <input type="number"  name="declaredValue[]" required> <br>
+                                            <input type="number"  name="declaredValue" value="<?php echo $declaredValue; ?>"> <br>
                                 </div>
                             </div>
                             <div>
                             <label for="">Warehouse</label><br>
-                            <select>
+                            <select name="warehouse">
 
                             <?php
 
@@ -83,7 +137,11 @@ use LDAP\Result;
 
                                 </select><br>
                                 </div>
-                        <label>Transaction Fee</label><input type="number" name="transacFee" required>
-                                        <label>Transaction Date</label><input type="date" name="transacDate" required><br>
+                        <label>Transaction Fee</label><input type="number" name="transacFee"  value="<?php echo $transacFee; ?>"><br>
+                                        <label>Transaction Date</label><input type="date" name="transacDate"  value="<?php echo $transacDate; ?>"><br>
 
-                        </form>
+                                        </form>
+
+<script>
+
+</script>

@@ -100,6 +100,12 @@ use LDAP\Result;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
     </head>
 
@@ -171,8 +177,8 @@ use LDAP\Result;
                                     $id1 = $q->fetch();
                                 ?>
 
-                                <option ><?php echo $id['warehouse_Id']?>&nbsp;Cebu Warehouse</option>
-                                <option  ><?php echo $id1['warehouse_Id']?>&nbsp;Dumaguete Warehouse</option>
+                                <option value="1"><?php echo $id['warehouse_Id']?>&nbsp;Cebu Warehouse</option>
+                                <option value="2"><?php echo $id1['warehouse_Id']?>&nbsp;Dumaguete Warehouse</option>
 
                             </select><br>
                             </div>

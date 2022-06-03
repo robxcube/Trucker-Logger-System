@@ -1,22 +1,37 @@
 ﻿<?php
-        foreach($_POST['clientName'] as $key => $value){
-            $sql = "INSERT INTO client (name, phoneNo) VALUES (:name,:phoneNo)";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([
-                'name'=> $value,
-                'phoneNo'=> $_POST['clientPhoneNo'][$key]
-            ]);
-        }
+    include 'dbConnect.php';
 
-        foreach($_POST['itemName'] as $key => $value){
-            $sql = 'INSERT INTO item (item_Name, item_Type, item_Size,quantity, declared_Value) VALUES (:item_Name, :item_Type, :item_Size,:qty, :declared_Value)';
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([
-            'item_Name' => $value,
-            'item_Type' => $_POST['itemType'][$key],
-            'item_Size' => $_POST['itemSize'][$key],
-            'qty' => $_POST['qty'][$key],
-            'declared_Value' => $_POST['declaredValue'][$key]
-            ]);
-        }
+
+    $clientId = $_POST['client_Id'];
+    $pkgId = $_POST['pkg_Id'];
+    $itemId = $_POST['item_Id'];
+    $clientName = $_POST['clientName'];
+    $clientPhoneNo = $_POST['clientPhoneNo'];
+    $itemName = $_POST['itemName'];
+    $itemType = $_POST['itemType'];
+    $itemSize = $_POST['itemSize'];
+    $qty = $_POST['qty'];
+    $declaredValue = $_POST['declaredValue'];
+    $warehouse = $_POST['warehouse'];
+    $transacFee = $_POST['transacFee'];
+    $transacDate = $_POST['transacDate'];
+
+
+
+        $sql ="UPDATE client SET name= '$clientName',phoneNo='$clientPhoneNo' WHERE client_Id = '$clientId'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $sql ="UPDATE item SET item_Name= '$itemName',item_Type='$itemType', item_Size='$itemSize', quantity='$qty', declared_Value = '$declaredValue' WHERE item_Id = '$itemId'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $sql ="UPDATE package SET warehouse_Id = '$warehouse', transaction_Fee = '$transacFee', transaction_Date = '$transacDate' WHERE pkg_Id = '$pkgId'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+
+
+
+
 ?>

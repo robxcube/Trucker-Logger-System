@@ -1,5 +1,6 @@
 ﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <?php require 'dbConnect.php' ?>
 <?php
@@ -21,6 +22,8 @@ if($result >0) {
 </script>
 
 <!doctype html>
+    <div id="show_alert"></div>
+
 
 <table id="dtBasicExample" class="table" width="100%" >
 <head>
@@ -52,9 +55,9 @@ if($result >0) {
             <td class="pkg_id"><?php echo $row['pkg_Id'] ?></td>
             <td><?php echo $row['emp_Id'] ?></td>
             <td><?php echo $row['warehouse_Id'] ?></td>
-            <td class="client_id"><?php echo $row['client_Id'] ?></td>
-            <td><?php echo $row['transaction_Fee'] ?></td>
-            <td><?php echo $row['transaction_Date'] ?></td>
+            <td class="client_id"><?php echo $row['client_Id'];?></td>
+            <td class="transac_Fee"><?php echo $row['transaction_Fee'] ?></td>
+            <td class="transac_Date"><?php echo $row['transaction_Date'] ?></td>
             <td><a href="#" class="btn btn-info editbtn" data-toggle="modal" data-target="#myModal" >Edit</a>
             <!--onclick="getData(<?php echo $row['client_Id']; ?>,<?php echo $row['pkg_Id']; ?>,<?php echo $row['warehouse_Id']; ?>)" -->
             &nbsp;
@@ -69,14 +72,12 @@ if($result >0) {
 ?>
 </div>
 
+</tbody>
+
 <body>
 
 <div class="container">
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -84,17 +85,21 @@ if($result >0) {
 
       <!-- Modal content-->
       <div class="modal-content">
+
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Update Information</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="info_update">
 
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="update">Update</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
+
       </div>
+
 
     </div>
   </div>
@@ -120,21 +125,45 @@ if($result >0) {
     $(document).on('click', '.editbtn', function() {
 
         var client_id = $(this).closest('tr').find('.client_id').text();
-        console.log("pressed");
+        var pkg_id = $(this).closest('tr').find('.pkg_id').text();
+        var transacFee = $(this).closest('tr').find('.transac_Fee').text();
+        var transacDate = $(this).closest('tr').find('.transac_Date').text();
+
 
         $.ajax({
             url: "getData.php",
             type:"POST",
-            data: {'client_id': client_id},
+            data: {
+                'client_id': client_id,
+                'pkg_id': pkg_id,
+                'transacFee': transacFee,
+                'transacDate': transacDate
+            },
 
             success: function(data) {
-                $(".modal-body").html(data);
+                $("#info_update").html(data);
 
             }
         });
 
+
+
     });
 
+    $(document).on('click', '#update', function() {
+
+    $.ajax({
+        url:"update.php",
+        type:'POST',
+        data:$("#updateForm").serialize(),
+        success: function(data) {
+            console.log(data);
+
+        }
+    });
+
+
+});
 
 
 
@@ -142,7 +171,7 @@ if($result >0) {
         console.log(id);
 
         $.confirm({
-
+            columnClass: 'small',
             type: 'red',
             title: 'Alert!',
             content: 'Are you sure want to delete this?',
@@ -166,11 +195,14 @@ if($result >0) {
                 },
 
                 cancel: function () {
+                    columnClass: 'col-md-12',
                     $.alert('Canceled!');
                 }
             }
             });
         };
+
+
 
 
 </script>
