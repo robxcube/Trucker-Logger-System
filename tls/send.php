@@ -25,13 +25,12 @@ include 'index.php';
     }
 
 
+
         getPkg($conn);
         getId($conn);
 
-    function getPkg ($conn) {
-                $selection = $_POST['employee'];
-                $warehouse = $_POST['warehouse'];
 
+    function getPkg ($conn) {
                 $sql = "SELECT client_Id FROM `client` ORDER BY `client_Id` DESC LIMIT 1";
                 $q = $conn->query($sql);
                 $q->setFetchMode(PDO::FETCH_ASSOC);
@@ -39,6 +38,8 @@ include 'index.php';
 
                 $transacFee = $_POST['transacFee'];
                 $transacDate = $_POST['transacDate'];
+                $selection = $_POST['employee'];
+                $warehouse = $_POST['warehouse'];
 
                 $sql1 = "INSERT INTO `package` (pkg_Id,emp_Id,warehouse_Id,client_Id,transaction_Fee,transaction_Date) VALUES (NULL,1,1,$id[client_Id],$transacFee,'$transacDate')";
                 $stmt1 = $conn->prepare($sql1);

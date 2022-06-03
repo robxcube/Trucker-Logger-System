@@ -1,5 +1,6 @@
 ﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <?php require 'dbConnect.php' ?>
 <?php
@@ -133,8 +134,24 @@ if($result >0) {
             }
         });
 
+
+
     });
 
+    $(document).on('click', '#update', function() {
+
+    $.ajax({
+        url:"update.php",
+        type:'POST',
+        data:$("#updateForm").serialize(),
+        success: function(data) {
+            console.log(data);
+
+        }
+    });
+
+
+});
 
 
 
@@ -142,7 +159,7 @@ if($result >0) {
         console.log(id);
 
         $.confirm({
-
+            columnClass: 'small',
             type: 'red',
             title: 'Alert!',
             content: 'Are you sure want to delete this?',
@@ -166,11 +183,14 @@ if($result >0) {
                 },
 
                 cancel: function () {
+                    columnClass: 'col-md-12',
                     $.alert('Canceled!');
                 }
             }
             });
         };
+
+
 
 
 </script>
